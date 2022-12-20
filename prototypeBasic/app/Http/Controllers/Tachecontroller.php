@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Tachecontroller extends Controller
 {
@@ -36,10 +37,17 @@ class Tachecontroller extends Controller
      */
     public function store(Request $request)
     {
-        $tache=new Tache();
-        $tache->nom_tache=$request->input('nom_tache');
-        $tache->save();
-        return redirect()->route('crud.index');
+        if(Auth::check()){
+            $tache=new Tache();
+            $tache->nom_tache=$request->input('nom_tache');
+            $tache->save();
+            return redirect()->route('crud.index');
+        }
+       else{
+
+        return redirect('/login');
+        
+       }
     }
 
     /**
