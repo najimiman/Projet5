@@ -45,8 +45,8 @@ class Tachecontroller extends Controller
         }
        else{
 
-        return redirect('/login');
-        
+        return redirect('/register');
+
        }
     }
 
